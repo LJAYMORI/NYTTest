@@ -147,13 +147,13 @@ public class StoryWebActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null) {
             mUrl = intent.getStringExtra(ARG_URL);
-            if (TextUtils.isEmpty(mUrl)) {
-                showToast("invalid argument");
-                finish();
-                return false;
+            if (!TextUtils.isEmpty(mUrl)) {
+                return true;
             }
         }
-        return true;
+        showToast("invalid argument");
+        finish();
+        return false;
     }
 
     private void showLoadingView() {

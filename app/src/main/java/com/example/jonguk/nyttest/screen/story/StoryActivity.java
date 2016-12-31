@@ -60,13 +60,18 @@ public class StoryActivity extends BaseActivity {
 
     private boolean initArgs() {
 //        mStoryJson = getIntent().getParcelableExtra(ARG_STORY_JSON);
-        mStoryJson = (StoryJson) getIntent().getSerializableExtra(ARG_STORY_JSON);
-        if (mStoryJson == null) {
-            showToast("invalid argument");
-            finish();
-            return false;
+        Intent intent = getIntent();
+        if (intent != null) {
+            try {
+                mStoryJson = (StoryJson) intent.getSerializableExtra(ARG_STORY_JSON);
+                if (mStoryJson != null) {
+                    return true;
+                }
+            } catch (ClassCastException ignore) {}
         }
-        return true;
+        showToast("invalid argument");
+        finish();
+        return false;
     }
 
     public static Intent createArguments(Context context, StoryJson storyJson) {
