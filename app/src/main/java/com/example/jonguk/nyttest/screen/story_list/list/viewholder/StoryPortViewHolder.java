@@ -1,10 +1,12 @@
 package com.example.jonguk.nyttest.screen.story_list.list.viewholder;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jonguk.nyttest.R;
+import com.example.jonguk.nyttest.json.MultimediumJson;
 import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.utils.image_loader.ImageLoader;
 
@@ -28,6 +30,13 @@ public class StoryPortViewHolder extends AbsStoryListViewHolder {
 
     @Override
     public void bind(StoryJson storyJson) {
+        MultimediumJson mediumJson = storyJson.getMediumJsonFromType(MultimediumJson.ImageType.NORMAL);
+        int measuredWidth = itemView.getMeasuredWidth();
+        if (measuredWidth > 0 && mediumJson != null) {
+            ViewGroup.LayoutParams lp = mBackgroundView.getLayoutParams();
+            lp.height = (int) (mediumJson.height * measuredWidth / mediumJson.width);
+            itemView.requestLayout();
+        }
         ImageLoader.getInstance().with(itemView.getContext())
                 .load(storyJson.getThumbnailUrl())
                 .into(mBackgroundView);

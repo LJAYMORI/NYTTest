@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by Jonguk on 2016. 12. 31..
@@ -27,7 +28,7 @@ public class StoryJson implements Serializable {
         }
     }
 
-    public Type type;
+    private static final AtomicLong sIdGenerator = new AtomicLong();
 
     public String section;
     public String subsection;
@@ -61,7 +62,7 @@ public class StoryJson implements Serializable {
     public String shortUrl;
 
     public long getId() {
-        return url.hashCode();
+        return sIdGenerator.getAndIncrement();
     }
 
     public int getTypeOrdinal() {

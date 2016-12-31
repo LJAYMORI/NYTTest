@@ -47,10 +47,12 @@ public class StoryListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_list);
+        mRecyclerView.setItemAnimator(null);
         mRecyclerView.setLayoutManager(
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mAdapter = new StoryListAdapter(mItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
+
         mRefreshLayout.setOnRefreshListener(this::requestStories);
 
         showLoadingView();

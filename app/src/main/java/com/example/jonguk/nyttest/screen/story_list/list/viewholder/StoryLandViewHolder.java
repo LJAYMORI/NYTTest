@@ -31,13 +31,12 @@ public class StoryLandViewHolder extends AbsStoryListViewHolder {
     @Override
     public void bind(StoryJson storyJson) {
         MultimediumJson mediumJson = storyJson.getMediumJsonFromType(MultimediumJson.ImageType.NORMAL);
-        int measuredWidth = itemView.getMeasuredWidth();
+        int measuredWidth = mImageView.getMeasuredWidth();
         if (measuredWidth > 0 && mediumJson != null) {
             ViewGroup.LayoutParams lp = mImageView.getLayoutParams();
             lp.height = (int) (mediumJson.height * measuredWidth / mediumJson.width);
             itemView.requestLayout();
         }
-
         ImageLoader.getInstance().with(itemView.getContext())
                 .load(storyJson.getThumbnailUrl())
                 .into(mImageView);
