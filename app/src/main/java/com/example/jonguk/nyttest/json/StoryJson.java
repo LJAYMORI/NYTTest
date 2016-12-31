@@ -29,6 +29,7 @@ public class StoryJson implements Serializable {
     }
 
     private static final AtomicLong sIdGenerator = new AtomicLong();
+    public long id = sIdGenerator.getAndIncrement();
 
     public String section;
     public String subsection;
@@ -62,7 +63,7 @@ public class StoryJson implements Serializable {
     public String shortUrl;
 
     public long getId() {
-        return sIdGenerator.getAndIncrement();
+        return id;
     }
 
     public int getTypeOrdinal() {

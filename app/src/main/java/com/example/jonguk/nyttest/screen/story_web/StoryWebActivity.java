@@ -79,8 +79,8 @@ public class StoryWebActivity extends BaseActivity {
         WebViewClient client = new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
                 showLoadingView();
+                super.onPageStarted(view, url, favicon);
             }
 
             @Override
