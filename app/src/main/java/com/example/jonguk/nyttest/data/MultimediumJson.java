@@ -1,10 +1,12 @@
 package com.example.jonguk.nyttest.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public class MultimediumJson {
+public class MultimediumJson implements Serializable {
 
     public static final String IMAGE_TYPE_STANDARD_THUMBNAIL = "Standard Thumbnail";
     public static final String IMAGE_TYPE_THUMBNAIL_LARGE = "thumbLarge";

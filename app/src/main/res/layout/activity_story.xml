@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jonguk.nyttest.screen.story_list.StoryListActivity">
+    android:background="@android:color/white"
+    tools:context="com.example.jonguk.nyttest.screen.story.StoryActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

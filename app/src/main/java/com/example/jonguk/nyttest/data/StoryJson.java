@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.example.jonguk.nyttest.R;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public class StoryJson {
+public class StoryJson implements Serializable {
     public enum Type {
         TEXT(R.layout.item_story_list_text),
         LANDSCAPE(R.layout.item_story_list_land),
@@ -25,7 +26,6 @@ public class StoryJson {
         }
     }
 
-    private long id;
     public String section;
     public String subsection;
     public String title;
@@ -78,6 +78,13 @@ public class StoryJson {
                 "http://www.thewoodjoynt.com/Content/Images/Products/NoImageAvailable.jpg";
     }
 
+    @Nullable
+    public String getJumboImageUrl() {
+        MultimediumJson thumbnail = getJumboMediumJson();
+        return thumbnail != null ? thumbnail.url :
+                "http://www.thewoodjoynt.com/Content/Images/Products/NoImageAvailable.jpg";
+    }
+
     public MultimediumJson getNormalMediumJson() {
         MultimediumJson thumbnail = null;
         for (MultimediumJson multimediumJson : multimediaList) {
@@ -87,6 +94,22 @@ public class StoryJson {
                     MultimediumJson.IMAGE_TYPE_THREE_BY_TWO.equalsIgnoreCase(format)) {
                 thumbnail = multimediumJson;
             } else if (MultimediumJson.IMAGE_TYPE_NORMAL.equalsIgnoreCase(format)) {
+                return multimediumJson;
+            }
+        }
+        return thumbnail;
+    }
+
+    public MultimediumJson getJumboMediumJson() {
+        MultimediumJson thumbnail = null;
+        for (MultimediumJson multimediumJson : multimediaList) {
+            String format = multimediumJson.format;
+            if (MultimediumJson.IMAGE_TYPE_STANDARD_THUMBNAIL.equalsIgnoreCase(format) ||
+                    MultimediumJson.IMAGE_TYPE_THUMBNAIL_LARGE.equalsIgnoreCase(format) ||
+                    MultimediumJson.IMAGE_TYPE_NORMAL.equalsIgnoreCase(format) ||
+                    MultimediumJson.IMAGE_TYPE_THREE_BY_TWO.equalsIgnoreCase(format)) {
+                thumbnail = multimediumJson;
+            } else if (MultimediumJson.IMAGE_TYPE_SUPER_JUMBO.equalsIgnoreCase(format)) {
                 return multimediumJson;
             }
         }

@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.example.jonguk.nyttest.R;
-import com.example.jonguk.nyttest.screen.story_list.listview.StoryListAdapter;
+import com.example.jonguk.nyttest.data.StoryJson;
+import com.example.jonguk.nyttest.screen.story.StoryActivity;
+import com.example.jonguk.nyttest.screen.story_list.list.viewholder.AbsStoryListViewHolder;
+import com.example.jonguk.nyttest.screen.story_list.list.StoryListAdapter;
 import com.example.jonguk.nyttest.utils.activity.BaseActivity;
 
 import butterknife.BindView;
@@ -19,6 +22,13 @@ public class StoryListActivity extends BaseActivity {
 
     private StoryListAdapter mAdapter;
 
+    private AbsStoryListViewHolder.OnItemClickListener mItemClickListener = position -> {
+        StoryJson storyJson = mAdapter.getItem(position);
+        if (storyJson != null) {
+            startActivity(StoryActivity.createArguments(StoryListActivity.this, storyJson));
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +36,7 @@ public class StoryListActivity extends BaseActivity {
 
         mRecyclerView.setLayoutManager(
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        mAdapter = new StoryListAdapter();
+        mAdapter = new StoryListAdapter(mItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
 
         requestStories();
@@ -36,7 +46,7 @@ public class StoryListActivity extends BaseActivity {
         StoryListRequest.getStoryList()
                 .takeUntil(destroySignal())
                 .subscribe(storyListJson -> {
-                    mAdapter.setItems(storyListJson.results);
+                    mAdapter.initItems(storyListJson.results);
                 }, err -> {
 
                 });

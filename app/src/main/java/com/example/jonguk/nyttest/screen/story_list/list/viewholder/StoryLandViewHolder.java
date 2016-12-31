@@ -1,4 +1,4 @@
-package com.example.jonguk.nyttest.screen.story_list.listview;
+package com.example.jonguk.nyttest.screen.story_list.list.viewholder;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -14,19 +14,20 @@ import butterknife.BindView;
  * Created by Jonguk on 2016. 12. 31..
  */
 
-class StoryLandViewHolder extends AbsStoryViewHolder {
+public class StoryLandViewHolder extends AbsStoryListViewHolder {
 
     @BindView(R.id.story_land_image)
     ImageView mImageView;
     @BindView(R.id.story_land_title)
     TextView mTitleView;
 
-    StoryLandViewHolder(View itemView) {
+    public StoryLandViewHolder(View itemView, OnItemClickListener itemClickListener) {
         super(itemView);
+        setOnItemClickListener(itemClickListener);
     }
 
     @Override
-    void bind(StoryJson storyJson) {
+    public void bind(StoryJson storyJson) {
 //        ViewGroup.LayoutParams lp = mImageView.getLayoutParams();
 //        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
 //        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -34,5 +35,10 @@ class StoryLandViewHolder extends AbsStoryViewHolder {
                 .load(storyJson.getThumbnailUrl())
                 .into(mImageView);
         mTitleView.setText(storyJson.title);
+        itemView.setOnClickListener(v -> {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(getAdapterPosition());
+            }
+        });
     }
 }

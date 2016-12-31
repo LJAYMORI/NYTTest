@@ -1,4 +1,4 @@
-package com.example.jonguk.nyttest.screen.story_list.listview;
+package com.example.jonguk.nyttest.screen.story_list.list.viewholder;
 
 import android.view.View;
 import android.widget.TextView;
@@ -12,20 +12,26 @@ import butterknife.BindView;
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public class StoryTextViewHolder extends AbsStoryViewHolder {
+public class StoryTextViewHolder extends AbsStoryListViewHolder {
 
     @BindView(R.id.story_text_title)
     TextView mTitleView;
     @BindView(R.id.story_text_abstract)
     TextView mAbstractView;
 
-    public StoryTextViewHolder(View itemView) {
+    public StoryTextViewHolder(View itemView, OnItemClickListener itemClickListener) {
         super(itemView);
+        setOnItemClickListener(itemClickListener);
     }
 
     @Override
     public void bind(StoryJson storyJson) {
         mTitleView.setText(storyJson.title);
         mAbstractView.setText(storyJson.abs);
+        itemView.setOnClickListener(v -> {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(getAdapterPosition());
+            }
+        });
     }
 }
