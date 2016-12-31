@@ -17,6 +17,7 @@ import butterknife.Unbinder;
 public class BaseActivity extends RxActivity {
 
     private Unbinder mUnbinder;
+    private Snackbar mSnackbar;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -28,6 +29,10 @@ public class BaseActivity extends RxActivity {
     protected void onDestroy() {
         if (mUnbinder != null) {
             mUnbinder.unbind();
+        }
+        if (mSnackbar != null && mSnackbar.isShown()) {
+            mSnackbar.dismiss();
+            mSnackbar = null;
         }
         super.onDestroy();
     }
@@ -41,13 +46,24 @@ public class BaseActivity extends RxActivity {
     }
 
     protected void showSnackbar(View view, String msg) {
-        Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
+        if (view != null) {
+            mSnackbar = Snackbar.make(view, msg, Snackbar.LENGTH_LONG);
+            mSnackbar.show();
+        }
     }
 
     protected void showSnackBar(View view, String msg, String actionString, View.OnClickListener listener) {
-        Snackbar.make(view, msg, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(Color.RED)
-                .setAction(actionString, listener).show();
+        if (view != null) {
+            mSnackbar = Snackbar.make(view, msg, Snackbar.LENGTH_INDEFINITE);
+            mSnackbar.setActionTextColor(Color.RED)
+                    .setAction(actionString, listener).show();
+        }
+    }
+
+    protected void hideSnackBar() {
+        if (mSnackbar != null && mSnackbar.isShown()) {
+            mSnackbar.dismiss();
+        }
     }
 
     protected String getStringWithoutException(@StringRes int resId) {

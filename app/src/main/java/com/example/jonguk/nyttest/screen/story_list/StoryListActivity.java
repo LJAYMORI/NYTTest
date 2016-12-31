@@ -61,6 +61,7 @@ public class StoryListActivity extends BaseActivity {
     }
 
     private void requestStories() {
+        hideSnackBar();
         if (!mRefreshLayout.isRefreshing()) {
             showLoadingView();
         }
@@ -84,7 +85,9 @@ public class StoryListActivity extends BaseActivity {
     }
 
     private void showRetryButton() {
-        showSnackBar(mCoordinatorLayout, "불러오기 실패", "재시도", v -> requestStories());
+        showSnackBar(mCoordinatorLayout,
+                getStringWithoutException(R.string.load_fail),
+                getStringWithoutException(R.string.retry), v -> requestStories());
     }
 
     private void showLoadingView() {

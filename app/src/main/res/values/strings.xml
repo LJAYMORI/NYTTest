@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NYTTest</string>
+    <string name="load_fail">Load fail</string>
+    <string name="retry">Retry</string>
 </resources>

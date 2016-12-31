@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -27,6 +30,8 @@ public class StoryWebActivity extends BaseActivity {
 //    public static final String ARG_STORY_JSON = "story_json";
     public static final String ARG_URL = "arg_url";
 
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout mCoordinatorLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.web_view)
@@ -88,6 +93,13 @@ public class StoryWebActivity extends BaseActivity {
                 hideLoadingView();
                 setSubTitle(url);
             }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                showSnackBar(mCoordinatorLayout,
+                        "", getStringWithoutException(R.string.retry), v -> requestUrl());
+            }
         };
         WebChromeClient chromeClient = new WebChromeClient() {
             @Override
@@ -112,7 +124,14 @@ public class StoryWebActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
         settings.setAppCacheEnabled(true);
         settings.setDisplayZoomControls(false);
-        mWebView.loadUrl(mUrl);
+
+        requestUrl();
+    }
+
+    private void requestUrl() {
+        if (mWebView != null) {
+            mWebView.loadUrl(mUrl);
+        }
     }
 
     private void initActionBar() {
