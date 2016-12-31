@@ -80,12 +80,10 @@ public class StoryWebActivity extends BaseActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 showLoadingView();
-                super.onPageStarted(view, url, favicon);
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
+            public void onPageCommitVisible(WebView view, String url) {
                 hideLoadingView();
                 setSubTitle(url);
             }
@@ -93,7 +91,6 @@ public class StoryWebActivity extends BaseActivity {
         WebChromeClient chromeClient = new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
                 setTitle(title);
             }
         };
