@@ -10,9 +10,9 @@ import android.widget.ProgressBar;
 
 import com.example.jonguk.nyttest.R;
 import com.example.jonguk.nyttest.json.StoryJson;
-import com.example.jonguk.nyttest.screen.story.StoryActivity;
 import com.example.jonguk.nyttest.screen.story_list.list.StoryListAdapter;
 import com.example.jonguk.nyttest.screen.story_list.list.viewholder.AbsStoryListViewHolder;
+import com.example.jonguk.nyttest.screen.story_web.StoryWebActivity;
 import com.example.jonguk.nyttest.utils.activity.BaseActivity;
 
 import java.util.List;
@@ -38,7 +38,8 @@ public class StoryListActivity extends BaseActivity {
     private AbsStoryListViewHolder.OnItemClickListener mItemClickListener = position -> {
         StoryJson storyJson = mAdapter.getItem(position);
         if (storyJson != null) {
-            startActivity(StoryActivity.createArguments(StoryListActivity.this, storyJson));
+//            startActivity(StoryActivity.createArguments(StoryListActivity.this, storyJson));
+            startActivity(StoryWebActivity.createArguments(StoryListActivity.this, storyJson));
         }
     };
     private Subscription mStoryRequestSubscription;
