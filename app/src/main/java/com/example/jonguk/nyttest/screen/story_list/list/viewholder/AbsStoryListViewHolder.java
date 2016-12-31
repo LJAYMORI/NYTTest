@@ -3,7 +3,7 @@ package com.example.jonguk.nyttest.screen.story_list.list.viewholder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.jonguk.nyttest.data.StoryJson;
+import com.example.jonguk.nyttest.json.StoryJson;
 
 import butterknife.ButterKnife;
 

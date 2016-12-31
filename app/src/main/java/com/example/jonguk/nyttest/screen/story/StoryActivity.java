@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.jonguk.nyttest.R;
-import com.example.jonguk.nyttest.data.StoryJson;
+import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.screen.story.list.StoryAdapter;
 import com.example.jonguk.nyttest.utils.activity.BaseActivity;
 

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jonguk.nyttest.data.StoryJson;
+import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.screen.story.list.data.AbsStoryData;
 import com.example.jonguk.nyttest.screen.story.list.data.StoryAbstractData;
 import com.example.jonguk.nyttest.screen.story.list.data.StoryImageData;

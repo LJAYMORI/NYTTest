@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jonguk.nyttest.R;
-import com.example.jonguk.nyttest.data.StoryJson;
+import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.utils.image_loader.ImageLoader;
 
 import butterknife.BindView;

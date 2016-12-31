@@ -1,4 +1,4 @@
-package com.example.jonguk.nyttest.data;
+package com.example.jonguk.nyttest.json;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -26,6 +26,8 @@ public class StoryJson implements Serializable {
             this.layoutId = layoutId;
         }
     }
+
+    public Type type;
 
     public String section;
     public String subsection;

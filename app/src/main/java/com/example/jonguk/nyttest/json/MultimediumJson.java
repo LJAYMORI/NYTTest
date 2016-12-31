@@ -1,4 +1,4 @@
-package com.example.jonguk.nyttest.data;
+package com.example.jonguk.nyttest.json;
 
 import java.io.Serializable;
 

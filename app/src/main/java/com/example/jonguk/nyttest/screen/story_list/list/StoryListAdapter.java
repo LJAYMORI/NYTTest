@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jonguk.nyttest.data.StoryJson;
+import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.screen.story_list.list.viewholder.AbsStoryListViewHolder;
 import com.example.jonguk.nyttest.screen.story_list.list.viewholder.StoryLandViewHolder;
 import com.example.jonguk.nyttest.screen.story_list.list.viewholder.StoryPortViewHolder;
