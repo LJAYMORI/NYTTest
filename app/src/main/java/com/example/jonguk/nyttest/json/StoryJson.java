@@ -1,5 +1,7 @@
 package com.example.jonguk.nyttest.json;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
@@ -7,7 +9,6 @@ import com.example.jonguk.nyttest.R;
 import com.example.jonguk.nyttest.utils.image_loader.ImageLoader;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -16,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public class StoryJson implements Serializable {
+public class StoryJson implements Parcelable {
     public enum Type {
         TEXT(R.layout.item_story_list_text),
         LANDSCAPE(R.layout.item_story_list_land),
@@ -98,5 +99,65 @@ public class StoryJson implements Serializable {
             }
         }
         return thumbnail;
+    }
+
+    protected StoryJson(Parcel in) {
+        id = in.readLong();
+        section = in.readString();
+        subsection = in.readString();
+        title = in.readString();
+        abs = in.readString();
+        url = in.readString();
+        byline = in.readString();
+        itemType = in.readString();
+        updatedDate = in.readString();
+        createdDate = in.readString();
+        publishedDate = in.readString();
+        materialTypeFacet = in.readString();
+        kicker = in.readString();
+        desFacet = in.createStringArrayList();
+        orgFacet = in.createStringArrayList();
+        perFacet = in.createStringArrayList();
+        geoFacet = in.createStringArrayList();
+        shortUrl = in.readString();
+    }
+
+    public static final Creator<StoryJson> CREATOR = new Creator<StoryJson>() {
+        @Override
+        public StoryJson createFromParcel(Parcel in) {
+            return new StoryJson(in);
+        }
+
+        @Override
+        public StoryJson[] newArray(int size) {
+            return new StoryJson[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(section);
+        dest.writeString(subsection);
+        dest.writeString(title);
+        dest.writeString(abs);
+        dest.writeString(url);
+        dest.writeString(byline);
+        dest.writeString(itemType);
+        dest.writeString(updatedDate);
+        dest.writeString(createdDate);
+        dest.writeString(publishedDate);
+        dest.writeString(materialTypeFacet);
+        dest.writeString(kicker);
+        dest.writeStringList(desFacet);
+        dest.writeStringList(orgFacet);
+        dest.writeStringList(perFacet);
+        dest.writeStringList(geoFacet);
+        dest.writeString(shortUrl);
     }
 }

@@ -123,7 +123,7 @@ public class StoryWebActivity extends BaseActivity {
     }
 
     private boolean initArgs() {
-        mStoryJson = (StoryJson) getIntent().getSerializableExtra(ARG_STORY_JSON);
+        mStoryJson = getIntent().getParcelableExtra(ARG_STORY_JSON);
         if (mStoryJson == null) {
             showToast("invalid argument");
             finish();
