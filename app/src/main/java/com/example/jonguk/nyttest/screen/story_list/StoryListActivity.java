@@ -57,11 +57,13 @@ public class StoryListActivity extends BaseActivity {
 
         mRefreshLayout.setOnRefreshListener(this::requestStories);
 
-        showLoadingView();
         requestStories();
     }
 
     private void requestStories() {
+        if (!mRefreshLayout.isRefreshing()) {
+            showLoadingView();
+        }
         if (mStoryRequestSubscription != null && !mStoryRequestSubscription.isUnsubscribed()) {
             mStoryRequestSubscription.unsubscribe();
         }
