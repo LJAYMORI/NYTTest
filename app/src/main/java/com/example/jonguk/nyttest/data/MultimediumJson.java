@@ -7,13 +7,22 @@ import java.io.Serializable;
  */
 
 public class MultimediumJson implements Serializable {
+    public enum ImageType {
+        STANDARD_THUMBNAIL("Standard Thumbnail"),
+        THUMBNAIL_LARGE("thumbLarge"),
+        NORMAL("Normal"),
+        THREE_BY_TWO("mediumThreeByTwo210"),
+        SUPER_JUMBO("superJumbo");
 
-    public static final String IMAGE_TYPE_STANDARD_THUMBNAIL = "Standard Thumbnail";
-    public static final String IMAGE_TYPE_THUMBNAIL_LARGE = "thumbLarge";
-    public static final String IMAGE_TYPE_NORMAL = "Normal";
-    public static final String IMAGE_TYPE_THREE_BY_TWO = "mediumThreeByTwo210";
-    public static final String IMAGE_TYPE_SUPER_JUMBO = "superJumbo";
+        public String format;
+        ImageType(String format) {
+            this.format = format;
+        }
 
+        public boolean equals(String format) {
+            return this.format.equalsIgnoreCase(format);
+        }
+    }
 
     public String url;
     public String format;

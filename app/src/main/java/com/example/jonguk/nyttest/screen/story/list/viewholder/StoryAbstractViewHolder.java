@@ -1,5 +1,6 @@
 package com.example.jonguk.nyttest.screen.story.list.viewholder;
 
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,6 +24,6 @@ public class StoryAbstractViewHolder extends AbsStoryViewHolder<StoryAbstractDat
 
     @Override
     public void bind(StoryAbstractData data) {
-        mAbsView.setText(data.abs);
+        mAbsView.setText(Html.fromHtml(data.abs));
     }
 }

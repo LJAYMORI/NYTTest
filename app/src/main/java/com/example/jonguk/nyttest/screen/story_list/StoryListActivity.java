@@ -7,8 +7,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.example.jonguk.nyttest.R;
 import com.example.jonguk.nyttest.data.StoryJson;
 import com.example.jonguk.nyttest.screen.story.StoryActivity;
-import com.example.jonguk.nyttest.screen.story_list.list.viewholder.AbsStoryListViewHolder;
 import com.example.jonguk.nyttest.screen.story_list.list.StoryListAdapter;
+import com.example.jonguk.nyttest.screen.story_list.list.viewholder.AbsStoryListViewHolder;
 import com.example.jonguk.nyttest.utils.activity.BaseActivity;
 
 import butterknife.BindView;

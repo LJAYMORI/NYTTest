@@ -6,9 +6,9 @@ package com.example.jonguk.nyttest.screen.story.list.data;
 
 public class StoryAbstractData extends AbsStoryData {
 
-    public CharSequence abs;
+    public String abs;
 
-    public StoryAbstractData(CharSequence abs) {
+    public StoryAbstractData(String abs) {
         super(Type.ABSTRACT);
         this.abs = abs;
     }

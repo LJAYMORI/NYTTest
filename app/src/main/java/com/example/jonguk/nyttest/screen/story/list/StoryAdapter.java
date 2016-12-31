@@ -1,6 +1,7 @@
 package com.example.jonguk.nyttest.screen.story.list;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,10 @@ public class StoryAdapter extends RecyclerView.Adapter<AbsStoryViewHolder> {
     public void initItems(StoryJson storyJson) {
         mItems.clear();
         mItems.add(new StoryTitleData(storyJson.title));
-        mItems.add(new StoryImageData(storyJson.getJumboImageUrl()));
+        String imageUrl = storyJson.getJumboImageUrl();
+        if (!TextUtils.isDigitsOnly(imageUrl)) {
+            mItems.add(new StoryImageData(imageUrl));
+        }
         mItems.add(new StoryAbstractData(storyJson.abs));
         notifyDataSetChanged();
     }

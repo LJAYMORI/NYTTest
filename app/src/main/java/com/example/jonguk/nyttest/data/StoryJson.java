@@ -4,6 +4,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
 import com.example.jonguk.nyttest.R;
+import com.example.jonguk.nyttest.utils.image_loader.ImageLoader;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -62,7 +63,7 @@ public class StoryJson implements Serializable {
     }
 
     public int getTypeOrdinal() {
-        MultimediumJson multimediumJson = getNormalMediumJson();
+        MultimediumJson multimediumJson = getMediumJsonFromType(MultimediumJson.ImageType.NORMAL);
         if (multimediaList.size() == 0 || multimediumJson == null) {
             return Type.TEXT.ordinal();
         } else {
@@ -71,46 +72,25 @@ public class StoryJson implements Serializable {
         }
     }
 
-    @Nullable
     public String getThumbnailUrl() {
-        MultimediumJson thumbnail = getNormalMediumJson();
-        return thumbnail != null ? thumbnail.url :
-                "http://www.thewoodjoynt.com/Content/Images/Products/NoImageAvailable.jpg";
+        MultimediumJson thumbnail = getMediumJsonFromType(MultimediumJson.ImageType.NORMAL);
+        return thumbnail != null ? thumbnail.url : ImageLoader.NO_IMAGE;
+    }
+
+    public String getJumboImageUrl() {
+        MultimediumJson thumbnail = getMediumJsonFromType(MultimediumJson.ImageType.SUPER_JUMBO);
+        return thumbnail != null ? thumbnail.url : "";
     }
 
     @Nullable
-    public String getJumboImageUrl() {
-        MultimediumJson thumbnail = getJumboMediumJson();
-        return thumbnail != null ? thumbnail.url :
-                "http://www.thewoodjoynt.com/Content/Images/Products/NoImageAvailable.jpg";
-    }
-
-    public MultimediumJson getNormalMediumJson() {
+    private MultimediumJson getMediumJsonFromType(MultimediumJson.ImageType type) {
         MultimediumJson thumbnail = null;
         for (MultimediumJson multimediumJson : multimediaList) {
             String format = multimediumJson.format;
-            if (MultimediumJson.IMAGE_TYPE_STANDARD_THUMBNAIL.equalsIgnoreCase(format) ||
-                    MultimediumJson.IMAGE_TYPE_THUMBNAIL_LARGE.equalsIgnoreCase(format) ||
-                    MultimediumJson.IMAGE_TYPE_THREE_BY_TWO.equalsIgnoreCase(format)) {
-                thumbnail = multimediumJson;
-            } else if (MultimediumJson.IMAGE_TYPE_NORMAL.equalsIgnoreCase(format)) {
+            if (type.equals(format)) {
                 return multimediumJson;
-            }
-        }
-        return thumbnail;
-    }
-
-    public MultimediumJson getJumboMediumJson() {
-        MultimediumJson thumbnail = null;
-        for (MultimediumJson multimediumJson : multimediaList) {
-            String format = multimediumJson.format;
-            if (MultimediumJson.IMAGE_TYPE_STANDARD_THUMBNAIL.equalsIgnoreCase(format) ||
-                    MultimediumJson.IMAGE_TYPE_THUMBNAIL_LARGE.equalsIgnoreCase(format) ||
-                    MultimediumJson.IMAGE_TYPE_NORMAL.equalsIgnoreCase(format) ||
-                    MultimediumJson.IMAGE_TYPE_THREE_BY_TWO.equalsIgnoreCase(format)) {
+            } else {
                 thumbnail = multimediumJson;
-            } else if (MultimediumJson.IMAGE_TYPE_SUPER_JUMBO.equalsIgnoreCase(format)) {
-                return multimediumJson;
             }
         }
         return thumbnail;
