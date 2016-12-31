@@ -1,7 +1,5 @@
 package com.example.jonguk.nyttest.json;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
@@ -9,6 +7,7 @@ import com.example.jonguk.nyttest.R;
 import com.example.jonguk.nyttest.utils.image_loader.ImageLoader;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -17,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public class StoryJson implements Parcelable {
+public class StoryJson implements Serializable {
     public enum Type {
         TEXT(R.layout.item_story_list_text),
         LANDSCAPE(R.layout.item_story_list_land),
@@ -101,7 +100,7 @@ public class StoryJson implements Parcelable {
         return thumbnail;
     }
 
-    protected StoryJson(Parcel in) {
+    /*protected StoryJson(Parcel in) {
         id = in.readLong();
         section = in.readString();
         subsection = in.readString();
@@ -159,5 +158,5 @@ public class StoryJson implements Parcelable {
         dest.writeStringList(perFacet);
         dest.writeStringList(geoFacet);
         dest.writeString(shortUrl);
-    }
+    }*/
 }

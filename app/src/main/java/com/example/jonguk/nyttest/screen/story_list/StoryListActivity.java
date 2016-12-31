@@ -39,7 +39,7 @@ public class StoryListActivity extends BaseActivity {
         StoryJson storyJson = mAdapter.getItem(position);
         if (storyJson != null) {
 //            startActivity(StoryActivity.createArguments(StoryListActivity.this, storyJson));
-            startActivity(StoryWebActivity.createArguments(StoryListActivity.this, storyJson));
+            startActivity(StoryWebActivity.createArguments(StoryListActivity.this, storyJson.url));
             overridePendingTransition(R.anim.slide_right_in, R.anim.fade_out);
         }
     };

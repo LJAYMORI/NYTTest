@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -13,7 +14,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.example.jonguk.nyttest.R;
-import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.utils.activity.BaseActivity;
 
 import butterknife.BindView;
@@ -24,7 +24,8 @@ import butterknife.BindView;
 
 public class StoryWebActivity extends BaseActivity {
 
-    public static final String ARG_STORY_JSON = "story_json";
+//    public static final String ARG_STORY_JSON = "story_json";
+    public static final String ARG_URL = "arg_url";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -33,7 +34,7 @@ public class StoryWebActivity extends BaseActivity {
     @BindView(R.id.loading_view)
     ProgressBar mLoadingView;
 
-    private StoryJson mStoryJson;
+    private String mUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,23 +112,27 @@ public class StoryWebActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
         settings.setAppCacheEnabled(true);
         settings.setDisplayZoomControls(false);
-        mWebView.loadUrl(mStoryJson.url);
+        mWebView.loadUrl(mUrl);
     }
 
     private void initActionBar() {
         if (mToolbar != null) {
-            mToolbar.setTitle(mStoryJson.url);
+            mToolbar.setTitle(mUrl);
             mToolbar.setNavigationIcon(R.drawable.ic_close_grey);
             mToolbar.setNavigationOnClickListener(v -> finish());
         }
     }
 
     private boolean initArgs() {
-        mStoryJson = getIntent().getParcelableExtra(ARG_STORY_JSON);
-        if (mStoryJson == null) {
-            showToast("invalid argument");
-            finish();
-            return false;
+//        mStoryJson = getIntent().getParcelableExtra(ARG_STORY_JSON);
+        Intent intent = getIntent();
+        if (intent != null) {
+            mUrl = intent.getStringExtra(ARG_URL);
+            if (TextUtils.isEmpty(mUrl)) {
+                showToast("invalid argument");
+                finish();
+                return false;
+            }
         }
         return true;
     }
@@ -144,9 +149,9 @@ public class StoryWebActivity extends BaseActivity {
         }
     }
 
-    public static Intent createArguments(Context context, StoryJson storyJson) {
+    public static Intent createArguments(Context context, String url) {
         Intent intent = new Intent(context, StoryWebActivity.class);
-        intent.putExtra(ARG_STORY_JSON, storyJson);
+        intent.putExtra(ARG_URL, url);
         return intent;
     }
 }
