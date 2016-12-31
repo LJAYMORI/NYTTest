@@ -85,7 +85,7 @@ public class StoryJson implements Serializable {
     }
 
     @Nullable
-    private MultimediumJson getMediumJsonFromType(MultimediumJson.ImageType type) {
+    public MultimediumJson getMediumJsonFromType(MultimediumJson.ImageType type) {
         MultimediumJson thumbnail = null;
         for (MultimediumJson multimediumJson : multimediaList) {
             String format = multimediumJson.format;
