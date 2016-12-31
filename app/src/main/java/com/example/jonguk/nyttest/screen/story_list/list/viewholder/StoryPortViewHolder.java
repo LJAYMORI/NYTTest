@@ -31,7 +31,7 @@ public class StoryPortViewHolder extends AbsStoryListViewHolder {
     @Override
     public void bind(StoryJson storyJson) {
         MultimediumJson mediumJson = storyJson.getMediumJsonFromType(MultimediumJson.ImageType.NORMAL);
-        int measuredWidth = itemView.getMeasuredWidth();
+        int measuredWidth = mBackgroundView.getMeasuredWidth();
         if (measuredWidth > 0 && mediumJson != null) {
             ViewGroup.LayoutParams lp = mBackgroundView.getLayoutParams();
             lp.height = (int) (mediumJson.height * measuredWidth / mediumJson.width);

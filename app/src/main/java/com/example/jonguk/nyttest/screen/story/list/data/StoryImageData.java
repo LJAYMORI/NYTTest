@@ -7,10 +7,12 @@ package com.example.jonguk.nyttest.screen.story.list.data;
 public class StoryImageData extends AbsStoryData {
 
     public String imageUrl;
+    public String thumbnailUrl;
 
-    public StoryImageData(String imageUrl) {
+    public StoryImageData(String imageUrl, String thumbnailUrl) {
         super(Type.IMAGE);
         this.imageUrl = imageUrl;
+        this.thumbnailUrl = thumbnailUrl;
     }
 
 }

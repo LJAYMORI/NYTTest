@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class AbsStoryData {
     public enum Type {
         TITLE(R.layout.item_story_title),
+        TIMES(R.layout.item_story_times),
         IMAGE(R.layout.item_story_image),
         ABSTRACT(R.layout.item_story_abstract);
 
