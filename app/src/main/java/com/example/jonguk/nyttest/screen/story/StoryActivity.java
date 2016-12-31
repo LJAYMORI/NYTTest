@@ -42,6 +42,12 @@ public class StoryActivity extends BaseActivity {
             mAdapter.initItems(mStoryJson);
         }
     }
+    
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.slide_right_out);
+    }
 
     private void initActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

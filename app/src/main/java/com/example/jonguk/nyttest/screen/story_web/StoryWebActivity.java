@@ -57,6 +57,12 @@ public class StoryWebActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.slide_right_out);
+    }
+
     private void setSubTitle(String subTitle) {
         if (mToolbar != null) {
             mToolbar.setSubtitle(subTitle);
