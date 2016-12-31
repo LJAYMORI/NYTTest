@@ -1,13 +1,12 @@
 package com.example.jonguk.nyttest.json;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
 
 /**
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public class MultimediumJson implements Parcelable {
+public class MultimediumJson implements Serializable {
     public enum ImageType {
         STANDARD_THUMBNAIL("Standard Thumbnail"),
         THUMBNAIL_LARGE("thumbLarge"),
@@ -38,7 +37,7 @@ public class MultimediumJson implements Parcelable {
         return height / width;
     }
 
-    protected MultimediumJson(Parcel in) {
+    /*protected MultimediumJson(Parcel in) {
         url = in.readString();
         format = in.readString();
         height = in.readFloat();
@@ -76,5 +75,5 @@ public class MultimediumJson implements Parcelable {
         dest.writeString(subtype);
         dest.writeString(caption);
         dest.writeString(copyright);
-    }
+    }*/
 }
