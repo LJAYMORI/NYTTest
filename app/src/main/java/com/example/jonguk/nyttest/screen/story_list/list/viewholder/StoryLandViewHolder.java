@@ -1,10 +1,14 @@
 package com.example.jonguk.nyttest.screen.story_list.list.viewholder;
 
+import android.graphics.Bitmap;
+import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.jonguk.nyttest.R;
 import com.example.jonguk.nyttest.json.MultimediumJson;
 import com.example.jonguk.nyttest.json.StoryJson;
@@ -39,6 +43,26 @@ public class StoryLandViewHolder extends AbsStoryListViewHolder {
         }
         ImageLoader.getInstance().with(itemView.getContext())
                 .load(storyJson.getThumbnailUrl())
+                .asBitmap()
+                .dontAnimate()
+                .listener(new RequestListener<String, Bitmap>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        Palette.from(resource).generate(palette -> {
+                            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+                            if (swatch != null) {
+                                mTitleView.setBackgroundColor(swatch.getRgb());
+                                mTitleView.setTextColor(swatch.getBodyTextColor());
+                            }
+                        });
+                        return false;
+                    }
+                })
                 .into(mImageView);
 
         mTitleView.setText(storyJson.title);

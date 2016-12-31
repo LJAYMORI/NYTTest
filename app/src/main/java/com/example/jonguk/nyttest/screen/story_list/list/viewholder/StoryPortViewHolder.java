@@ -39,6 +39,7 @@ public class StoryPortViewHolder extends AbsStoryListViewHolder {
         }
         ImageLoader.getInstance().with(itemView.getContext())
                 .load(storyJson.getThumbnailUrl())
+                .dontAnimate()
                 .into(mBackgroundView);
         mTitleView.setText(storyJson.title);
         itemView.setOnClickListener(v -> {

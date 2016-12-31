@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true">
 
@@ -15,19 +16,20 @@
             android:id="@+id/story_land_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            tools:src="@drawable/placeholder" />
 
         <TextView
             android:id="@+id/story_land_title"
             style="@style/StoryListTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:background="#333333"
+            android:maxLines="3"
+            android:paddingBottom="20dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingBottom="20dp"
-            android:background="#333333"
-            android:maxLines="3"/>
+            android:paddingTop="10dp" />
 
     </LinearLayout>
 
