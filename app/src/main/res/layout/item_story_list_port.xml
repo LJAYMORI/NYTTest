@@ -17,6 +17,7 @@
         style="@style/StoryListTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/story_port_title_gradient"
         android:padding="6dp"
         android:minLines="3"
         android:maxLines="3" />
