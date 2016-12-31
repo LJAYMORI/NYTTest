@@ -1,6 +1,6 @@
 package com.example.jonguk.nyttest.screen.story_list;
 
-import com.example.jonguk.nyttest.data.StoryListJson;
+import com.example.jonguk.nyttest.json.StoryListJson;
 import com.example.jonguk.nyttest.utils.network.NYTBaseRequest;
 
 import retrofit2.http.GET;

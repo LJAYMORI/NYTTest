@@ -24,6 +24,10 @@
 
         <!--story activity-->
         <activity android:name=".screen.story.StoryActivity" />
+
+        <!--story web activity-->
+        <activity android:name=".screen.story_web.StoryWebActivity" />
+
     </application>
 
 </manifest>

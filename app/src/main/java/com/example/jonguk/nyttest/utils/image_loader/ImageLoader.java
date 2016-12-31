@@ -8,6 +8,8 @@ import com.bumptech.glide.RequestManager;
 
 public class ImageLoader {
 
+    public static final String NO_IMAGE = "http://www.thewoodjoynt.com/Content/Images/Products/NoImageAvailable.jpg";
+
     private static ImageLoader sInstance;
 
     private ImageLoader() {}

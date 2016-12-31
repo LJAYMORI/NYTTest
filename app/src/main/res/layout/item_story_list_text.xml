@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="wrap_content"
@@ -11,37 +10,40 @@
         android:id="@+id/story_text_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fda"/>
+        android:background="#333333" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#33000000"/>
+        android:background="#33000000" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="6dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
 
         <TextView
             android:id="@+id/story_text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.16"
+            android:maxLines="3"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:lineSpacingMultiplier="1.16"
-            android:maxLines="3" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/story_text_abstract"
+            style="@style/StoryListTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:maxLines="5"
-            style="@style/StoryListTextStyle"
-            />
+            android:maxLines="5" />
 
     </LinearLayout>
 
