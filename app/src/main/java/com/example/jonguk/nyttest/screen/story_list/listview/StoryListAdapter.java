@@ -1,6 +1,8 @@
 package com.example.jonguk.nyttest.screen.story_list.listview;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jonguk.nyttest.data.StoryJson;
@@ -16,10 +18,19 @@ public class StoryListAdapter extends RecyclerView.Adapter<AbsStoryViewHolder> {
 
     private final List<StoryJson> mItems = new ArrayList<>();
 
+    public StoryListAdapter() {
+        setHasStableIds(true);
+    }
+
     public void setItems(List<StoryJson> list) {
         mItems.clear();
         mItems.addAll(list);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return mItems.get(position).getId();
     }
 
     @Override
@@ -30,14 +41,14 @@ public class StoryListAdapter extends RecyclerView.Adapter<AbsStoryViewHolder> {
     @Override
     public AbsStoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         StoryJson.Type type = StoryJson.Type.values()[viewType];
+        View view = LayoutInflater.from(parent.getContext()).inflate(type.layoutId, parent, false);
         switch (type) {
             case TEXT:
-                return null;
+                return new StoryTextViewHolder(view);
             case LANDSCAPE:
-                return null;
+                return new StoryLandViewHolder(view);
             case PORTRAIT:
-                return null;
-            case INVALID:
+                return new StoryPortViewHolder(view);
             default:
                 return null;
         }

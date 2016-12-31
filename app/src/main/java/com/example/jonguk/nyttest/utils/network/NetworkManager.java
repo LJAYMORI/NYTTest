@@ -15,7 +15,7 @@ import rx.schedulers.Schedulers;
 
 public class NetworkManager {
     private static final String TAG = "NetworkManager";
-    private static final String BASE_URL = "https://api.github.com/";
+    private static final String BASE_URL = "https://api.nytimes.com/";
 
     private static Retrofit sInstance;
 

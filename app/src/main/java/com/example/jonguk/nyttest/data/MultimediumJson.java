@@ -5,16 +5,24 @@ package com.example.jonguk.nyttest.data;
  */
 
 public class MultimediumJson {
+
+    public static final String IMAGE_TYPE_STANDARD_THUMBNAIL = "Standard Thumbnail";
+    public static final String IMAGE_TYPE_THUMBNAIL_LARGE = "thumbLarge";
+    public static final String IMAGE_TYPE_NORMAL = "Normal";
+    public static final String IMAGE_TYPE_THREE_BY_TWO = "mediumThreeByTwo210";
+    public static final String IMAGE_TYPE_SUPER_JUMBO = "superJumbo";
+
+
     public String url;
     public String format;
-    public int height;
-    public int width;
+    public float height;
+    public float width;
     public String type;
     public String subtype;
     public String caption;
     public String copyright;
 
     public float getRatio() {
-        return (float) width / height;
+        return height / width;
     }
 }

@@ -1,7 +1,12 @@
 package com.example.jonguk.nyttest.data;
 
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
+
+import com.example.jonguk.nyttest.R;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,8 +14,18 @@ import java.util.List;
  */
 
 public class StoryJson {
-    public enum Type { INVALID, TEXT, LANDSCAPE,  PORTRAIT }
+    public enum Type {
+        TEXT(R.layout.item_story_list_text),
+        LANDSCAPE(R.layout.item_story_list_land),
+        PORTRAIT(R.layout.item_story_list_port);
 
+        public int layoutId;
+        Type(@LayoutRes int layoutId) {
+            this.layoutId = layoutId;
+        }
+    }
+
+    private long id;
     public String section;
     public String subsection;
     public String title;
@@ -38,19 +53,43 @@ public class StoryJson {
     @SerializedName("geo_facet")
     public List<String> geoFacet = null;
     @SerializedName("multimedia")
-    public List<MultimediumJson> multimediaList = null;
+    public List<MultimediumJson> multimediaList = new ArrayList<>();
     @SerializedName("short_url")
     public String shortUrl;
 
+    public long getId() {
+        return url.hashCode();
+    }
+
     public int getTypeOrdinal() {
-        if (multimediaList == null) {
-            return Type.INVALID.ordinal();
-        } else if (multimediaList.size() == 0) {
+        MultimediumJson multimediumJson = getNormalMediumJson();
+        if (multimediaList.size() == 0 || multimediumJson == null) {
             return Type.TEXT.ordinal();
         } else {
-            MultimediumJson multimediumJson = multimediaList.get(0);
-            return multimediumJson.getRatio() > 0.6 ?
+            return multimediumJson.getRatio() < 1.2f ?
                     Type.LANDSCAPE.ordinal() : Type.PORTRAIT.ordinal();
         }
+    }
+
+    @Nullable
+    public String getThumbnailUrl() {
+        MultimediumJson thumbnail = getNormalMediumJson();
+        return thumbnail != null ? thumbnail.url :
+                "http://www.thewoodjoynt.com/Content/Images/Products/NoImageAvailable.jpg";
+    }
+
+    public MultimediumJson getNormalMediumJson() {
+        MultimediumJson thumbnail = null;
+        for (MultimediumJson multimediumJson : multimediaList) {
+            String format = multimediumJson.format;
+            if (MultimediumJson.IMAGE_TYPE_STANDARD_THUMBNAIL.equalsIgnoreCase(format) ||
+                    MultimediumJson.IMAGE_TYPE_THUMBNAIL_LARGE.equalsIgnoreCase(format) ||
+                    MultimediumJson.IMAGE_TYPE_THREE_BY_TWO.equalsIgnoreCase(format)) {
+                thumbnail = multimediumJson;
+            } else if (MultimediumJson.IMAGE_TYPE_NORMAL.equalsIgnoreCase(format)) {
+                return multimediumJson;
+            }
+        }
+        return thumbnail;
     }
 }

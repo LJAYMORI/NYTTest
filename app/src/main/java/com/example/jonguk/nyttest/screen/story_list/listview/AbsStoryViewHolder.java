@@ -11,12 +11,12 @@ import butterknife.ButterKnife;
  * Created by Jonguk on 2016. 12. 31..
  */
 
-public abstract class AbsStoryViewHolder extends RecyclerView.ViewHolder {
+abstract class AbsStoryViewHolder extends RecyclerView.ViewHolder {
 
-    public AbsStoryViewHolder(View itemView) {
+    AbsStoryViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public abstract void bind(StoryJson storyJson);
+    abstract void bind(StoryJson storyJson);
 }

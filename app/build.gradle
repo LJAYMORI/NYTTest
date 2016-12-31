@@ -35,6 +35,7 @@ dependencies {
     // Google support
     compile "com.android.support:appcompat-v7:$rootProject.supportPackageVersion"
     compile "com.android.support:design:$rootProject.supportPackageVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportPackageVersion"
     compile 'com.google.code.gson:gson:2.7'
 
     // Rx
@@ -52,4 +53,5 @@ dependencies {
     // Butter knife
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
 }
