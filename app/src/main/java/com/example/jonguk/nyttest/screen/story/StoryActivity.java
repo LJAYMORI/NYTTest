@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.example.jonguk.nyttest.R;
 import com.example.jonguk.nyttest.data.StoryJson;
@@ -32,11 +33,22 @@ public class StoryActivity extends BaseActivity {
         setContentView(R.layout.activity_story);
 
         if (initArgs()) {
+            initActionBar();
+
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mAdapter = new StoryAdapter();
             mRecyclerView.setAdapter(mAdapter);
 
             mAdapter.initItems(mStoryJson);
+        }
+    }
+
+    private void initActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            toolbar.setTitle("");
+            toolbar.setNavigationIcon(R.drawable.ic_close_grey);
+            toolbar.setNavigationOnClickListener(v -> finish());
         }
     }
 
