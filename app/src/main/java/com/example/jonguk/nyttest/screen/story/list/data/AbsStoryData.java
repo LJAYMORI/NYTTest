@@ -15,7 +15,10 @@ public class AbsStoryData {
         TITLE(R.layout.item_story_title),
         TIMES(R.layout.item_story_times),
         IMAGE(R.layout.item_story_image),
-        ABSTRACT(R.layout.item_story_abstract);
+        ABSTRACT(R.layout.item_story_abstract),
+        BYLINE(R.layout.item_story_by_line),
+        ;
+
 
         public int layoutId;
         Type(@LayoutRes int layoutId) {

@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import com.example.jonguk.nyttest.json.StoryJson;
 import com.example.jonguk.nyttest.screen.story.list.data.AbsStoryData;
 import com.example.jonguk.nyttest.screen.story.list.data.StoryAbstractData;
+import com.example.jonguk.nyttest.screen.story.list.data.StoryByData;
 import com.example.jonguk.nyttest.screen.story.list.data.StoryImageData;
 import com.example.jonguk.nyttest.screen.story.list.data.StoryTimesData;
 import com.example.jonguk.nyttest.screen.story.list.data.StoryTitleData;
 import com.example.jonguk.nyttest.screen.story.list.viewholder.AbsStoryViewHolder;
 import com.example.jonguk.nyttest.screen.story.list.viewholder.StoryAbstractViewHolder;
+import com.example.jonguk.nyttest.screen.story.list.viewholder.StoryByViewHolder;
 import com.example.jonguk.nyttest.screen.story.list.viewholder.StoryImageViewHolder;
 import com.example.jonguk.nyttest.screen.story.list.viewholder.StoryTimesViewHolder;
 import com.example.jonguk.nyttest.screen.story.list.viewholder.StoryTitleViewHolder;
@@ -39,6 +41,7 @@ public class StoryAdapter extends RecyclerView.Adapter<AbsStoryViewHolder> {
             mItems.add(new StoryImageData(imageUrl, thumbnailUrl));
         }
         mItems.add(new StoryAbstractData(storyJson.abs));
+        mItems.add(new StoryByData(storyJson.byline));
         notifyDataSetChanged();
     }
 
@@ -60,6 +63,8 @@ public class StoryAdapter extends RecyclerView.Adapter<AbsStoryViewHolder> {
                 return new StoryImageViewHolder(view);
             case ABSTRACT:
                 return new StoryAbstractViewHolder(view);
+            case BYLINE:
+                return new StoryByViewHolder(view);
             default:
                 return null;
         }
